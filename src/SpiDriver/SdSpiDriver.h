@@ -32,6 +32,9 @@
 #include "SPI.h"
 #include "SdSpiBaseDriver.h"
 #include "SdFatConfig.h"
+
+#define SD_HAS_CUSTOM_SPI 1
+
 //------------------------------------------------------------------------------
 /** SDCARD_SPI is defined if board has built-in SD card socket */
 #ifndef SDCARD_SPI
@@ -357,7 +360,7 @@ class SdSpiSoftDriver : public SdSpiBaseDriver {
 /** SdFat uses Arduino library SPI. */
 typedef SdSpiLibDriver SdFatSpiDriver;
 #else  // USE_STANDARD_SPI_LIBRARY || !SD_HAS_CUSTOM_SPI
-/** SdFat uses custom fast SPI. */
+/** SdFat uses custom fast SPI. */  
 typedef SdSpiAltDriver SdFatSpiDriver;
 #endif  // USE_STANDARD_SPI_LIBRARY || !SD_HAS_CUSTOM_SPI
 

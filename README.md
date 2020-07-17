@@ -1,3 +1,18 @@
+# Modifications
+
+This is a modified version of the SdFat library providing a custom SdSpiDriver
+for an MSP430. The Arduino library magic stuff essentially means everything
+gets built, but because only the MSP430 code doesn't get optimized away,
+if you define SD_HAS_CUSTOM_SPI before you include SdFat.h, the optimized
+driver will be used.
+
+The optimized driver is pretty darn fast, I haven't run benchmarks but
+it's ~MB/s. It's hard coded to use EUSCI B0 and 2 DMA channels (DMA0/DMA1)
+so it'll only work with boards that have those, and also ones where
+the Energia SPI core maps to EUSCI B0.
+
+# Original README
+
 The Arduino SdFat library provides read/write access to FAT16/FAT32
 file systems on SD/SDHC flash cards.
 
@@ -40,3 +55,4 @@ SdFile, File, StdioStream, ifstream, ofstream, and others.
 Please continue by reading the html documentation in SdFat/extras/html
 
 Updated 28 Dec 2018
+
